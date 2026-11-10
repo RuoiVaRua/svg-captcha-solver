@@ -1,0 +1,41 @@
+{
+  "name": "svg-captcha-solver",
+  "version": "1.0.0",
+  "description": "High-performance vector path SVG captcha solver for svg-captcha with 0 dependencies.",
+  "main": "lib/index.js",
+  "module": "lib/index.mjs",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    }
+  },
+  "bin": {
+    "svg-captcha-solver": "./bin/cli.js"
+  },
+  "files": [
+    "lib",
+    "bin",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node tests/test.js"
+  },
+  "keywords": [
+    "svg",
+    "captcha",
+    "solver",
+    "svg-captcha",
+    "vector",
+    "ocr",
+    "recognition"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

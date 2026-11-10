@@ -7,3 +7,6 @@ dist/
 .DS_Store
 ref_dinhitcom/
 ref_AmireNoori/
+node_modules/
+*.tgz
+.env
