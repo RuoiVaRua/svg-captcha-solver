@@ -26,5 +26,11 @@ class TestSampleSvg(unittest.TestCase):
         result = solve_file(self.sample_path)
         self.assertEqual(result, "GFB4P5")
 
+    def test_solve_demo(self):
+        demo_path = Path(__file__).parent.parent / "demo.svg"
+        if demo_path.exists():
+            result = solve_file(demo_path)
+            self.assertEqual(result, "W7GAHQ")
+
 if __name__ == "__main__":
     unittest.main()

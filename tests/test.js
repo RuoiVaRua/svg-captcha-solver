@@ -22,6 +22,16 @@ function runTests() {
     console.warn(`[WARN] sample.svg not found at ${samplePath}`);
   }
 
+  // Test 1b: demo.svg (escaped quotes test)
+  const demoPath = path.join(__dirname, '..', 'demo.svg');
+  if (fs.existsSync(demoPath)) {
+    total++;
+    const demoResult = solveFile(demoPath);
+    assert.strictEqual(demoResult, 'W7GAHQ', `Expected 'W7GAHQ' but got '${demoResult}'`);
+    console.log(`[PASS] Demo SVG (escaped quotes) test: ${demoResult}`);
+    passed++;
+  }
+
   // Test 2: Generated test suite
   const manifestPath = path.join(__dirname, 'generated', 'manifest.json');
   if (fs.existsSync(manifestPath)) {

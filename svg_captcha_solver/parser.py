@@ -97,6 +97,10 @@ def parse_svg(svg_content: str) -> List[PathElement]:
     Parse an SVG string and return a list of character PathElements,
     sorted horizontally from left to right (by min_x).
     """
+    # Normalize escaped quotes (e.g. from JSON payloads or raw strings like \" or \')
+    if r'\"' in svg_content or r"\'" in svg_content:
+        svg_content = svg_content.replace(r'\"', '"').replace(r"\'", "'")
+
     # Extract canvas width if present
     svg_width = None
     width_match = re.search(r'width\s*=\s*["\']([0-9.]+)', svg_content)
@@ -124,11 +128,11 @@ def parse_svg(svg_content: str) -> List[PathElement]:
         pattern = re.compile(r'<path\b([^>]*)/?>', re.IGNORECASE)
         for match in pattern.finditer(svg_content):
             attrs = match.group(1)
-            d_match = re.search(r'd\s*=\s*["\']([^"\']+)["\']', attrs)
+            d_match = re.search(r'd\s*=\s*\\?["\']([^"\'\\]+)[\\]?["\']', attrs)
             if d_match:
                 d = d_match.group(1)
-                fill_m = re.search(r'fill\s*=\s*["\']([^"\']+)["\']', attrs)
-                stroke_m = re.search(r'stroke\s*=\s*["\']([^"\']+)["\']', attrs)
+                fill_m = re.search(r'fill\s*=\s*\\?["\']([^"\'\\]+)[\\]?["\']', attrs)
+                stroke_m = re.search(r'stroke\s*=\s*\\?["\']([^"\'\\]+)[\\]?["\']', attrs)
                 fill = fill_m.group(1) if fill_m else None
                 stroke = stroke_m.group(1) if stroke_m else None
                 raw_paths.append((d, fill, stroke))

@@ -35,6 +35,10 @@
   ],
   "author": "",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RuoiVaRua/svg-captcha-solver.git"
+  },
   "engines": {
     "node": ">=14.0.0"
   }
